@@ -12,11 +12,7 @@ class ProductController extends \yii\web\Controller
     public function actionIndex()
     {
         $products = Product::find()->all();
-        echo '<pre>';
-        print_r($products);
-        echo '<pre>';
-        exit();
-        return $this->render('index');
+        return $this->render('index', ['products' => $products]);
     }
 
 }
