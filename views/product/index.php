@@ -11,7 +11,9 @@ $this->title = 'YII2 CRUD APPLICATION';
     <div class="jumbotron text-center bg-transparent">
         <h1 class="display-4">YII2 CRUD APPLICATION!</h1>
     </div>
-
+    <div class="row">
+        <span><?= Html::a('Create', ['product/create'], ['class' => 'btn btn-primary mb-2']) ?></span>
+    </div>
     <div class="body-content">
 
         <div class="row">
@@ -36,9 +38,8 @@ $this->title = 'YII2 CRUD APPLICATION';
                                 <td class="text-end"><?php echo ucfirst($product->sale_price) ?></td>
                                 <td class="text-end"><?php echo ucfirst($product->purchase_price) ?></td>
                                 <td class="text-end">
-                                    <span><?= Html::a('View') ?></span>
-                                    <span><?= Html::a('Update') ?></span>
-                                    <span><?= Html::a('Delete') ?></span>
+                                    <span><?= Html::a('Update', ['update', 'id' => $product->id], ['class' => 'btn btn-primary btn-sm']) ?></span>
+                                    <span><?= Html::a('Delete', ['delete', 'id' => $product->id], ['class' => 'btn btn-danger btn-sm']) ?></span>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
