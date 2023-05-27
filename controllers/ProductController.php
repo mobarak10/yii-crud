@@ -76,10 +76,10 @@ class ProductController extends Controller
             if (isset($_FILES['Product']['name']['image']) && $_FILES['Product']['name']['image'] !== '') {
                 // Get the path of the old file
                 $oldImage = $product->image;
-                $oldImagePath = Yii::getAlias('@web/uploads/') . $oldImage;
+                $oldImagePath = 'uploads/ '. $oldImage;
 
                 // Delete the old file
-                if (file_exists($oldImagePath)) {
+                if ($oldImage) {
                     unlink($oldImagePath);
                 }
 
@@ -108,6 +108,15 @@ class ProductController extends Controller
     public function actionDelete($id)
     {
         $product = Product::findOne($id);
+
+        $oldImage = $product->image;
+        $oldImagePath = 'uploads/' . $oldImage;
+
+        // Delete the old file
+        if (file_exists($oldImagePath)) {
+            unlink($oldImagePath);
+        }
+
         if ($product->delete()) {
             \Yii::$app->session->setFlash('danger', 'Product Delete Successfully');
             return $this->redirect('index');
