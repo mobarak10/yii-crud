@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\web\JsExpression;
 
 $this->title = 'YII2 CRUD APPLICATION';
 ?>
@@ -51,7 +52,22 @@ $this->title = 'YII2 CRUD APPLICATION';
                                 </td>
                                 <td class="text-end">
                                     <span><?= Html::a('Update', ['update', 'id' => $product->id], ['class' => 'btn btn-primary btn-sm']) ?></span>
-                                    <span><?= Html::a('Delete', ['delete', 'id' => $product->id], ['class' => 'btn btn-danger btn-sm']) ?></span>
+                                    <span>
+                                        <?=
+                                        Html::a('Delete', ['delete', 'id' => $product->id], [
+                                            'class' => 'btn btn-danger btn-sm',
+                                            'data' => [
+                                                'confirm' => 'Are you sure you want to delete this item?',
+                                                'method' => 'post',
+                                            ],
+                                            'onclick' => new JsExpression("
+                                                if (!confirm('Are you sure you want to delete this item?')) {
+                                                    return false;
+                                                }
+                                            "),
+                                        ]);
+                                        ?>
+                                    </span>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
