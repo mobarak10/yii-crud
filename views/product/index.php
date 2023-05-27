@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
 
 $this->title = 'YII2 CRUD APPLICATION';
 ?>
@@ -63,6 +64,17 @@ $this->title = 'YII2 CRUD APPLICATION';
                     <?php endif; ?>
                 </tbody>
             </table>
+            <div >
+                <?php
+                echo LinkPager::widget([
+                    'pagination' => $pagination,
+                    'options' => ['class' => 'pagination justify-content-end'],
+                    'linkContainerOptions' => ['class' => 'page-item'],
+                    'linkOptions' => ['class' => 'page-link'],
+                    'disabledListItemSubTagOptions' => ['tag' => 'a', 'class' => 'page-link'],
+                ]);
+                ?>
+            </div>
         </div>
 
     </div>

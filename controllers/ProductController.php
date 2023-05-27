@@ -12,12 +12,18 @@ class ProductController extends Controller
 {
     /**
      * view product list
-     * @return Product[]|array|\yii\db\ActiveRecord[]
+     * @return string
      */
     public function actionIndex()
     {
-        $products = Product::find()->all();
-        return $this->render('index', ['products' => $products]);
+        $model = new Product();
+        $data = $model->getPaginatedData();
+
+        return $this->render('index', [
+            'products' => $data['data'],
+            'pagination' => $data['pagination'],
+        ]);
+
     }
 
     /**
