@@ -25,6 +25,7 @@ $this->title = 'YII2 CRUD APPLICATION';
                     <th scope="col">Unit</th>
                     <th scope="col" class="text-end">Sale Price</th>
                     <th scope="col" class="text-end">Purchase Price</th>
+                    <th scope="col" class="text-end">Image</th>
                     <th scope="col" class="text-end">Action</th>
                 </tr>
                 </thead>
@@ -37,6 +38,16 @@ $this->title = 'YII2 CRUD APPLICATION';
                                 <td><?php echo ucfirst($product->unit) ?></td>
                                 <td class="text-end"><?php echo ucfirst($product->sale_price) ?></td>
                                 <td class="text-end"><?php echo ucfirst($product->purchase_price) ?></td>
+<!--                                <td>--><?php //echo $product->image ?><!--</td>-->
+                                <td>
+                                    <?= Html::img(Yii::getAlias('@web/uploads/'). $product->image,
+                                        [
+                                            'style' => 'width: 150px; height: 100px;',
+                                            'alt' => 'Product Image',
+                                            'class' => "rounded img-fluid img-thumbnail"
+                                        ])
+                                    ?>
+                                </td>
                                 <td class="text-end">
                                     <span><?= Html::a('Update', ['update', 'id' => $product->id], ['class' => 'btn btn-primary btn-sm']) ?></span>
                                     <span><?= Html::a('Delete', ['delete', 'id' => $product->id], ['class' => 'btn btn-danger btn-sm']) ?></span>

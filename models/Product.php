@@ -38,7 +38,8 @@ class Product extends ActiveRecord
             [['stock_alert'], 'integer'],
             [['sale_price', 'purchase_price'], 'number'],
             [['deleted_at'], 'safe'],
-            [['name', 'slug', 'unit', 'image'], 'string', 'max' => 255],
+            [['name', 'slug', 'unit'], 'string', 'max' => 255],
+            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
