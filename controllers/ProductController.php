@@ -75,11 +75,10 @@ class ProductController extends Controller
             //if it has new image
             if (isset($_FILES['Product']['name']['image']) && $_FILES['Product']['name']['image'] !== '') {
                 // Get the path of the old file
-                $oldImage = $product->image;
-                $oldImagePath = 'uploads/ '. $oldImage;
+                $oldImagePath = 'uploads/' . $oldFilePath;
 
                 // Delete the old file
-                if ($oldImage) {
+                if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
                 }
 
